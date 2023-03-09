@@ -74,6 +74,7 @@ def index():
             client = pymongo.MongoClient("mongodb+srv://reddysandeep0904:Sandeep0588@cluster0.x3niyyi.mongodb.net/?retryWrites=true&w=majority")
             db = client['review_scrap']
             review_col = db['review_scrap_data']
+            review_col.delete_many({})
             review_col.insert_many(reviews)
             return render_template('results.html', reviews=reviews[0:(len(reviews)-1)])
         except Exception as e:
